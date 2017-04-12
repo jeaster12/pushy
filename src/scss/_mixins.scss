@@ -1,3 +1,14 @@
+@mixin linear-gradient($gradientLine, $colorStops...) {
+  background-image: linear-gradient($gradientLine, $colorStops);
+
+  @if length($gradientLine) == 2 {
+    background-image: linear-gradient(to #{inverse-side(nth($gradientLine, 1))} #{inverse-side(nth($gradientLine, 2))}, $colorStops);
+  }
+
+  @else {
+    background-image: linear-gradient(to #{inverse-side($gradientLine)}, $colorStops);
+  }
+}
 
 /*
 * ==========================================================================
@@ -44,7 +55,7 @@
   box-shadow: $dropdown-box-shadow;
   border-radius: $dropdown-radius;
   box-sizing: border-box;
-  z-index: map-get($zindex, dropdown);
+  z-index: 12;
 }
 
 @mixin btn-size($size) {
@@ -98,7 +109,7 @@
   &.c-btn-hover,
   a:hover,
   a:focus {
-    background: lighten($bg, 4%);
+    background: lighten($bg, 6%);
     color: $color;
     border: $btn-border-width solid $border;
   }
@@ -151,8 +162,6 @@
     &:hover {
       background-color: transparent;
       color: $color-hover;
-      border-color: $border-color-hover;
-      border-right: 1px solid;
       z-index: 1002;
 
       @if $shadows == true {

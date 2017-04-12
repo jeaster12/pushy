@@ -1,4 +1,4 @@
-$primary          : #0078e0 !default;
+$primary          : #097FD7 !default;
 $default          : #eeeeee !default;
 $secondary        : #777777 !default;
 $success          : #3ebd4c !default;
@@ -11,9 +11,9 @@ $dark-gray        : #8d8d97 !default;
 $darkest-gray     : #414152 !default;
 $black            : #0a0a0a !default;
 $white            : #fefefe !default;
-$body-background  : $white    !default;
+$body-background  : #ffffff !default;
 $body-font-color  : #333333 !default;
-$global-radius: 4px;
+$global-radius    : 4px;
 
 
 //==========================================================================
@@ -26,9 +26,9 @@ $btn-default-padding-v: .7em !default;
 $btn-default-padding-h: 1.75em !default;
 $btn-font-weight      : bold !default;
 $btn-border-width     : 1px !default;
-$btn-radius           : 3px !default;
+$btn-radius           : 2px !default;
 $btn-shadow           : inset 0 1px rgba(white, .1), inset 0 0 0 1px rgba(white, .08), 0 1px 1px rgba(black, 0.05) !default;
-$btn-shadow-active    : inset 0 0 4px rgba(black, .54) !default;
+$btn-shadow-active    : inset 0 0 4px rgba(0, 0, 0, 0.15) !default;
 $btn-shadow-outline   : inset 1px 1px 7px 0 rgba(160, 160, 168, .48) !default;
 
 $btn-active-selected  : false !default;
@@ -53,3 +53,72 @@ $btn-lg-font   : 14px;
 $btn-lg-padding: 17px 78px;
 $btn-xl-font   : 1.75em;
 $btn-xl-padding: 25px 98px;
+
+
+$dropdown-glued           : true !default;
+$dropdown-list-margin     : 0 !default;
+$dropdown-list-padding    : 0 !default;
+$dropdown-padding         : 1rem !default;
+$dropdown-border          : 1px solid $light-gray !default;
+$dropdown-color           : $dark-gray !default;
+$dropdown-color-hover     : $primary !default;
+$dropdown-background-color: $white !default;
+$dropdown-background-hover: darken($default, 2%) !default;
+$dropdown-box-shadow      : 0 2px 7px rgba(0, 0, 0, 0.2) !default;
+$dropdown-font-size       : 12px !default;
+$dropdown-font-weight     : bold !default;
+$dropdown-width           : 100% !default;
+$dropdown-radius          : $global-radius !default;
+$dropdown-divider-margin  : 0 !default;
+
+$btn-size-padding: (
+  xl: 25px 98px,
+  lg: 17px 78px,
+  sm: 4px 27px,
+);
+
+
+// Buttons with different active state (selected)
+// Add a btn color and background, ex: (default: "#9494a1")
+$btn-colors-selected: (
+) !default;
+
+// Outline Button Colors
+// The class is generated using the name: (ex .c-btn-primary-outline)
+$outline-btn-colors:
+("primary", $primary, $white)
+("success", $success, $white)
+("default", $secondary, $white)
+("warning", $warning, $white)
+("danger", $danger, $white)
+!default;
+
+// BUTTON SHAPES
+// This map is used to generate the different button shapes.
+// Edit or add shapes to the list below and recompile.
+// Each block contains the (name, border-radius).
+// The class is generated using the name: (ex .c-btn-square).
+//
+$btn-shapes: (
+  square: 0,
+  box: $global-radius,
+  rounded: $global-radius,
+  pill: 200px,
+  circle: 100%
+) !default;
+
+
+$btn-sizes:
+("xs", 11px)
+("sm", 11px)
+("lg", 14px)
+("xl", 18px)
+!default;
+
+$btn-colors:
+("primary", $primary, $white)
+("success", $success, $white)
+("default", $default, $secondary)
+("warning", $warning, $white)
+("danger", $danger, $white)
+!default;
