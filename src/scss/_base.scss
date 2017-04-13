@@ -14,21 +14,6 @@
 }
 
 .c-btn {
-  &-primary {
-    @include style($primary, $white, $primary);
-
-    &-outline {
-      @include btn-outline($primary, lighten($primary, 10%), null, darken($primary, 10%));
-    }
-  }
-
-  &-secondary {
-    @include style($secondary, $black, $secondary);
-
-    &-outline {
-      @include btn-outline(#333, #ccc, #333, #333);
-    }
-  }
 
   &-success {
     @include style($success, $white, $success);
@@ -74,3 +59,24 @@
   @include btn-disabled;
 }
 
+
+.c-btn {
+  &-primary {
+    @include style(color(primary), $white, color(primary));
+
+    &-outline {
+      @include btn-ghost(#097FD7, #333, white);
+    }
+  }
+}
+
+.c-btn {
+  &-secondary {
+    @include style(#fbfbfb, #333333, #E6E6E6);
+  } 
+}
+
+
+.c-btn-theme {
+  @include btn-theme(#097FD7,#3A99DF,white,#097FD7,#3A99DF, $gradients: false, $shadows: true)
+}

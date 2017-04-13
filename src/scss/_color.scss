@@ -1,0 +1,60 @@
+$primary: #097fd7;
+$success: #3ebd4c;
+$danger: #fb1f47;
+$warning: #f8c000;
+
+
+$lightest: 40%;
+$lighter: 25%;
+$light: 15%;
+$dark: 8%;
+$darker: 15%;
+$darkest: 30%;
+
+
+$palettes: (
+  primary: (
+    lightest:  lighten($primary, $lightest),
+    lighter:  lighten($primary, $lighter),
+    light:  lighten($primary, $light),
+    base:   $primary,
+    dark:   darken($primary, $dark),
+    darker:   darken($primary, $darker),
+    darkest:   darken($primary, $darkest)
+  ),
+  success: (
+    lightest:  lighten($success, $lightest),
+    lighter:  lighten($success, $lighter),
+    light:  lighten($success, $light),
+    base:   $success,
+    dark:   darken($success, $dark),
+    darker:   darken($success, $darker),
+    darkest:   darken($success, $darkest)
+  ),
+  warning: (
+    lightest:  lighten($warning, $lightest),
+    lighter:  lighten($warning, $lighter),
+    light:  lighten($warning, $light),
+    base:   $warning,
+    dark:   darken($warning, $dark),
+    darker:   darken($warning, $darker),
+    darkest:   darken($warning, $darkest)
+  ),
+  danger: (
+    lightest:  lighten($danger, $lightest),
+    lighter:  lighten($danger, $lighter),
+    light:  lighten($danger, $light),
+    base:   $danger,
+    dark:   darken($danger, $dark),
+    darker:   darken($danger, $darker),
+    darkest:   darken($danger, $darkest)
+  )  
+);
+
+// Palette function,
+@function color($palette, $tone: 'base') {
+  @return map-get(map-get($palettes, $palette), $tone);
+}
+
+
+

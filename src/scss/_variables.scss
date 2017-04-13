@@ -1,4 +1,4 @@
-$primary          : #097FD7 !default;
+$primary          : #454545 !default;
 $default          : #eeeeee !default;
 $secondary        : #777777 !default;
 $success          : #3ebd4c !default;
@@ -122,3 +122,11 @@ $btn-colors:
 ("warning", $warning, $white)
 ("danger", $danger, $white)
 !default;
+
+
+$btn-primary-bg          : color(primary);
+$btn-primary-bg-hover    : color(primary, light);
+$btn-primary-color       : white;
+$btn-primary-border      : color(primary);
+$btn-primary-border-hover: color(primary, light);
+
