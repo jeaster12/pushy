@@ -29,8 +29,7 @@
 
   &-danger {
     @include style($danger, $white, $danger);
-  }
-}
+  
 
 .c-btn {
   @include btn-size(md);
