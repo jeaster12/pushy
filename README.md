@@ -1,1 +1,1 @@
-# pushy buttons scss
+# pushy buttons
