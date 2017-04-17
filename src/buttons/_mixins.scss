@@ -1,0 +1,204 @@
+@mixin linear-gradient($gradientLine, $colorStops...) {
+  background-image: linear-gradient($gradientLine, $colorStops);
+
+  @if length($gradientLine) == 2 {
+    background-image: linear-gradient(to #{inverse-side(nth($gradientLine, 1))} #{inverse-side(nth($gradientLine, 2))}, $colorStops);
+  }
+
+  @else {
+    background-image: linear-gradient(to #{inverse-side($gradientLine)}, $colorStops);
+  }
+}
+
+/* Button Base
+* ================ ================ ================ ================ */
+@mixin btn-base($background: $default, $font: $btn-font-size) {
+  background-color: $background;
+  font-weight: $btn-font-weight;
+  font-size: $font;
+  font-family: $btn-font-family;
+  line-height: $btn-line-height;
+  padding: $btn-default-padding-v $btn-default-padding-h;
+  text-decoration: none;
+  text-align: center;
+  border-radius: $btn-radius;
+  white-space: nowrap;
+  display: inline-block;
+  border: $btn-border-width solid $light-gray;
+  box-sizing: border-box;
+  cursor: pointer;
+  outline: 0;
+
+  @if $btn-shadows == true {
+    box-shadow: 0 2px 12px 0px rgba(119, 119, 119, .28);
+  }
+
+  @else {
+    box-shadow: 0;
+  }
+}
+
+@mixin btn-style(
+  $bg,
+  $color,
+  $border: $bg,
+  $bg-hover: lighten($bg, 10%),
+  $border-hover: lighten($bg, 10%),
+  $gradients: $btn-gradients,
+  $shadows: $btn-shadows) {
+  color: $color;
+  border: $btn-border-width solid $border;
+  border-radius: $btn-radius;
+
+  @if $gradients == true {
+    @include linear-gradient(to bottom, lighten($bg, 6%), $bg 66%, darken($bg, 4%));
+  }
+
+  @else {
+    background: $bg;
+  }
+
+  @if $shadows == true {
+    box-shadow: $btn-shadow;
+  }
+
+  @else {
+    box-shadow: 0;
+  }
+
+  &:focus {
+    color: $color;
+  }
+
+  &:hover,
+  &.c-btn-hover,
+  a:hover,
+  a:focus {
+    background: $bg-hover;
+    color: $color;
+    border: $btn-border-width solid $border-hover;
+  }
+
+  &:active,
+  &.c-btn-active {
+    @include btn-active($bg, $border);
+  }
+
+  @if $btn-active-selected {
+    &.c-btn-active {
+      color: $white;
+      border-color: transparent;
+    }
+  }
+}
+
+@mixin btn-outline($border-color, $color: $border-color, $border-color-hover: $border-color, $bg: transparent, $bg-hover: $border-color, $color-hover: $white) {
+  border: 1px solid $border-color;
+  background-color: $bg;
+  color: $color;
+  box-shadow: none;
+
+  &.c-btn-outline-active {
+    @include btn-active($bg, $border-color);
+  }
+
+  &:not(:disabled) {
+    &:hover {
+      background-color: $bg-hover;
+      color: $color-hover;
+      border-color: $border-color-hover;
+      z-index: 1002;
+    }
+
+    &:active,
+    &.c-btn-active {
+      @include btn-active($bg-hover, $border-color);
+
+      color: $color-hover;
+    }
+  }
+}
+
+@mixin btn-size($size) {
+  @if $size == sm {
+    font-size: $btn-sm-font;
+    padding: $btn-sm-padding;
+  }
+
+  @elseif $size == md {
+    font-size: $btn-md-font;
+    padding: $btn-md-padding;
+  }
+
+  @elseif $size == lg {
+    font-size: $btn-lg-font;
+    padding: $btn-lg-padding;
+  }
+
+  @elseif $size == xl {
+    font-size: $btn-xl-font;
+    padding: $btn-xl-padding;
+  }
+}
+
+@mixin btn-active ($bg: $default, $border: $default ) {
+  text-decoration: none;
+  background-color: desaturate($bg, 10%);
+  border-color: darken($border, 15%);
+  transition-duration: 0s;
+  box-shadow: $btn-shadow-active;
+}
+
+
+@mixin btn-disabled {
+  &,
+  &:hover,
+  &:focus,
+  &:active {
+    top: 0;
+    background: $btn-disabled-bg;
+    border: $btn-disabled-bd;
+    text-shadow: $btn-disabled-text-shadow;
+    color: $btn-disabled-c;
+    line-height: 1;
+    cursor: not-allowed;
+    appearance: none;
+    box-shadow: none;
+    opacity: $btn-disabled-opacity;
+  }
+}
+
+
+@mixin btn-style-alt($border-color, $color, $border-color-hover: darken($border-color, 15%), $bg: transparent, $bg-hover: transparent, $color-hover: $color) {
+  border: 1px solid $border-color;
+  background-color: $bg;
+  color: $color;
+  box-shadow: none;
+
+  &.c-btn-outline-active {
+    @include btn-active($bg, $border-color);
+  }
+
+  &:not(:disabled) {
+    &:hover {
+      background-color: $bg-hover;
+      color: $color-hover;
+      border-color: $border-color-hover;
+      z-index: 1002;
+    }
+
+    &:active,
+    &.c-btn-active {
+      @include btn-active($bg, $border-color);
+    }
+  }
+}
+
+
+.c-btn-active {
+  text-decoration: none;
+  transition-duration: 0s;
+  box-shadow: $btn-shadow-active;
+}
+
+

@@ -1,8 +1,7 @@
-/*
-* ==========================================================================
-* Button Dropdowns
-* ==========================================================================
-*/
+@import "settings";
+
+/* Button Dropdowns
+* ================ */
 
 .c-dropdown {
   position: relative;
@@ -24,7 +23,7 @@
 
   &-below {
     top: 100%;
-    
+
     @if $dropdown-glued {
       border-radius: 0 0 $dropdown-radius $dropdown-radius;
     }

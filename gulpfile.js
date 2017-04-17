@@ -82,7 +82,7 @@ gulp.task('clean:dist', function() {
 
 
 gulp.task('styles', function() {
-  return gulp.src(bases.app + 'scss/buttons.scss')
+  return gulp.src(bases.app + '/buttons.scss')
     .pipe(plumber({errorHandler: onError}))
     .pipe(sourcemaps.init())
     .pipe(sass(sassOptions))
@@ -138,7 +138,7 @@ gulp.task('html', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(bases.app + 'scss/**/*.scss', ['styles']);
+  gulp.watch(bases.app + '**/*.scss', ['styles']);
   gulp.watch(bases.app + './*.html', ['html']);
 });
 
