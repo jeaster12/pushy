@@ -1,0 +1,180 @@
+$min-height: 36px;
+$vertical-padding: ($min-height - 15px - 2px) / 2;
+$slim-min-height: 30px;
+$slim-vertical-padding: ($slim-min-height - 15px - 2px) / 2;
+$large-min-height: 44px;
+$large-vertical-padding: ($large-min-height - 15px - 2px) / 2;
+
+.c-btn {
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0 25px;
+  background: linear-gradient(to bottom, color(white), color(sky, lighter));
+  border: 1px solid color(sky, dark);
+  box-shadow: 0 1px 0 0 rgba(22, 29, 37, 0.05);
+  border-radius: 3px;
+  line-height: 2;
+  color: color(ink);
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  transition-property: background, border, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
+
+  &:hover {
+    background: linear-gradient(to bottom, color(sky, lighter), color(sky, light));
+    border-color: color(sky, dark);
+  }
+
+  &:focus {
+    border-color: color(indigo);
+    outline: 0;
+    box-shadow: 0 0 0 1px color(indigo);
+  }
+
+  &:active {
+    // Same color gradient is necessary for background transitions
+    background: linear-gradient(to bottom, color(sky, light), color(sky, light));
+    border-color: color(sky, dark);
+    box-shadow:
+      0 0 0 0 transparent,
+      inset 0 1px 1px 0 rgba(color(ink, lighter), 0.1),
+      inset 0 1px 4px 0 rgba(color(ink, lighter), 0.2);
+  }
+
+  &.c-btn-disabled {
+    background: color(sky, light);
+    color: color(ink, lightest);
+  }
+}
+
+.c-btn-primary {
+  @include btn-filled(color(blue), color(blue, dark));
+
+  &.c-btn-disabled {
+    background: color(indigo, light);
+    border-color: color(indigo, light);
+    box-shadow: none;
+    color: color(white);
+  }
+}
+
+.c-btn-destructive {
+  @include btn-filled(color(red), color(red, dark));
+}
+
+.c-btn-outline {
+  @include btn-outline(color(ink, lighter));
+
+  &.c-btn-disabled {
+    background-color: color(white);
+    border-color: color(sky, dark);
+  }
+}
+
+.c-btn-destructive.c-btn-outline {
+  @include btn-outline(color(red));
+}
+
+.c-btn-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+// The way the designs work, we need to do lots of reaching down to
+// target the content in pseudo-selectors, so we need higher specificity
+// in this case.
+// stylelint-disable selector-max-specificity
+
+.c-btn-plain {
+  margin: (-1 * $vertical-padding) (-1 * spacing());
+  background: transparent;
+  border: transparent;
+  box-shadow: none;
+  color: color(blue);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: transparent;
+    border: transparent;
+    box-shadow: none;
+    color: color(blue, dark);
+  }
+
+  &:focus > .c-btn__Content::after {
+    opacity: 1;
+  }
+
+  &.c-btn-disabled {
+    background: none;
+  }
+
+  &.c-btn-sizeSlim {
+    margin-top: (-1 * $slim-vertical-padding);
+    margin-bottom: (-1 * $slim-vertical-padding);
+  }
+
+  &.c-btn-sizeLarge {
+    margin: (-1 * $large-vertical-padding) (-1 * spacing(loose));
+  }
+
+  > .c-btn__Content::after {
+    @include plain-btn-backdrop;
+    content: '';
+    opacity: 0;
+  }
+
+  &.c-btn-iconOnly {
+    margin: -0.5 * ($min-height - icon-size());
+
+    &:focus,
+    &:active {
+
+      background: plain-btn-background();
+    }
+
+    &:hover,
+    &:active {
+    }
+
+    > .c-btn__Content::after {
+      display: none;
+    }
+
+    &.c-btn-disabled {
+      
+    }
+  }
+}
+
+// stylelint-enable selector-max-specificity
+
+.c-btn-iconOnly {
+  padding-left: spacing(tight);
+  padding-right: spacing(tight);
+}
+
+.c-btn-sizeSlim {
+  min-height: $slim-min-height;
+  min-width: $slim-min-height;
+  padding: $slim-vertical-padding spacing();
+}
+
+.c-btn-sizeLarge {
+  min-height: $large-min-height;
+  min-width: $large-min-height;
+  padding: $large-vertical-padding spacing(loose);
+}
+
+.c-btn-fullWidth {
+  display: block;
+  width: 100%;
+}
+

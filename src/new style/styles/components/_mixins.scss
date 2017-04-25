@@ -1,0 +1,87 @@
+@mixin btn-filled($btn-color, $focus-color, $outline-color: null) {
+  $border-color: darken($btn-color, 10%);
+  $active-color: darken($btn-color, 15%);
+
+  background: linear-gradient(to bottom, lighten($btn-color, 2%), darken($btn-color, 2%));
+  border-color: $border-color;
+  box-shadow:
+    inset 0 1px 0 0 lighten($btn-color, 3%),
+    0 2px 3px 0 rgba(22, 29, 37, 0.07),
+    0 0 0 0 transparent;
+  color: color(white);
+
+  &:hover {
+    background: linear-gradient(to bottom, $btn-color, darken($btn-color, 5%));
+    border-color: $border-color;
+  }
+
+  &:focus {
+    border-color: $focus-color;
+    box-shadow:
+      inset 0 1px 0 0 lighten($btn-color, 5%),
+      0 1px 0 0 rgba(22, 29, 37, 0.05),
+      0 0 0 1px $focus-color;
+  }
+
+  &:active {
+    background: linear-gradient(to bottom, $border-color, $border-color);
+    border-color: $active-color;
+    box-shadow:
+      inset 0 0 0 0 transparent,
+      0 1px 0 0 rgba(22, 29, 37, 0.05),
+      0 0 1px 0 $active-color;
+  }
+}
+
+@mixin btn-outline($outline-color) {
+  background: transparent;
+  border-color: rgba($outline-color, 0.8);
+  box-shadow: none;
+  color: darken($outline-color, 20%);
+
+  &:hover {
+    background: rgba($outline-color, 0.05);
+    border-color: rgba($outline-color, 0.4);
+  }
+
+  &:focus {
+    border-color: rgba($outline-color, 0.8);
+    box-shadow: 0 0 0 1px rgba($outline-color, 0.8);
+  }
+
+  &:active {
+    background: rgba($outline-color, 0.1);
+    box-shadow: none;
+  }
+}
+
+@function plain-btn-background() {
+  @return rgba(color(ink), 0.1);
+}
+
+@mixin plain-btn-backdrop() {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  left: -5px;
+  right: -5px;
+  display: block;
+  background: plain-btn-background();
+  border-radius: 3px;
+  transition: opacity 200ms cubic-bezier(0.64, 0, 0.35, 1);
+}
+
+@mixin unstyled-btn() {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}

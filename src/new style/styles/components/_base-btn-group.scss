@@ -1,0 +1,63 @@
+$stacking-order: (
+  item: 10,
+  focused: 20,
+);
+
+$plain-horizontal-spacing: spacing(tight);
+$item-spacing: spacing(tight);
+
+.c-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: (-1 * $item-spacing);
+  margin-left: (-1 * $item-spacing);
+}
+
+.c-btn-group-segmented {
+  display: flex;
+
+  .c-btn-group-item {
+    position: relative;
+    z-index: z-index(item, $stacking-order);
+
+    &:not(:first-child) {
+      margin-left: -1px;
+    }
+
+    * {
+      border-radius: 0 !important;
+    }
+
+    &:first-child * {
+      border-top-left-radius: 3px !important;
+      border-bottom-left-radius: 3px !important;
+    }
+
+    &:last-child * {
+      border-top-right-radius: 3px !important;
+      border-bottom-right-radius: 3px !important;
+    }
+  }
+
+  // stylelint-enable declaration-no-important
+
+  .c-btn-group-item-focused {
+    z-index: z-index(focused, $stacking-order);
+  }
+}
+
+.c-btn-group-item {
+  margin-top: $item-spacing;
+  margin-left: $item-spacing;
+}
+
+.c-btn-group-item-plain {
+  &:not(:first-child) {
+    margin-left: $item-spacing + $plain-horizontal-spacing;
+  }
+
+  &:not(:last-child) {
+    margin-right: $plain-horizontal-spacing;
+  }
+}
